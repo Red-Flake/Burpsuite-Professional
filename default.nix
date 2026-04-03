@@ -7,11 +7,11 @@
   makeDesktopItem,
   unzip,
 }: let
-  version = "2025.1.1";
+  version = "2026.3.1";
 
   productName = "pro";
   productDesktop = "BurpSuite Professional";
-  burpHash = "sha256-17COQ9deYkzmaXBbg1arD3BQY7l3WZ9FakLXzTxgmr8=";
+  burpHash = "sha256-jRVRvqFRsRO+vbEoV35bX4vi9XEYl737L0umt61ACtk=";
 
   burpSrc = fetchurl {
     name = "burpsuite.jar";
