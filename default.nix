@@ -62,6 +62,7 @@ in
         udev
         libxkbcommon
         libgbm
+        libglvnd
         nspr
         nss
         pango
