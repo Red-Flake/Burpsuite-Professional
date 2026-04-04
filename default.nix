@@ -3,7 +3,7 @@
   pkgs,
   buildFHSEnv,
   fetchurl,
-  jdk,
+  jetbrains,
   makeDesktopItem,
   unzip,
 }: let
@@ -43,7 +43,7 @@ in
   buildFHSEnv {
     inherit pname version;
 
-    runScript = "${jdk}/bin/java --add-opens=java.desktop/javax.swing=ALL-UNNAMED --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/jdk.internal.org.objectweb.asm=ALL-UNNAMED --add-opens=java.base/jdk.internal.org.objectweb.asm.tree=ALL-UNNAMED --add-opens=java.base/jdk.internal.org.objectweb.asm.Opcodes=ALL-UNNAMED -javaagent:${loaderSrc}/loader.jar -noverify -jar ${burpSrc}";
+    runScript = "${jetbrains.jdk-no-jcef}/bin/java -Dawt.toolkit.name=WLToolkit -Dsund.java2d.vulkan=True --add-opens=java.desktop/javax.swing=ALL-UNNAMED --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/jdk.internal.org.objectweb.asm=ALL-UNNAMED --add-opens=java.base/jdk.internal.org.objectweb.asm.tree=ALL-UNNAMED --add-opens=java.base/jdk.internal.org.objectweb.asm.Opcodes=ALL-UNNAMED -javaagent:${loaderSrc}/loader.jar -noverify -jar ${burpSrc}";
 
     targetPkgs = pkgs:
       with pkgs; [
@@ -87,7 +87,7 @@ in
       # Create loader executable
       mkdir -p $out/bin
       echo "#!${pkgs.bash}/bin/bash" > $out/bin/loader
-      echo "\"${jdk}/bin/java\" -jar \"$out/share/loader.jar\" \"\$@\"" >> $out/bin/loader
+      echo "\"${jetbrains.jdk-no-jcef}/bin/java\" -jar \"$out/share/loader.jar\" \"\$@\"" >> $out/bin/loader
       chmod +x $out/bin/loader
 
       cp -r ${desktopItem}/share/applications $out/share
@@ -107,7 +107,7 @@ in
         + replaceStrings ["."] ["-"] version;
       sourceProvenance = with sourceTypes; [binaryBytecode];
       license = licenses.unfree;
-      platforms = jdk.meta.platforms;
+      platforms = jetbrains.jdk-no-jcef.meta.platforms;
       hydraPlatforms = [];
       maintainers = with maintainers; [
         bennofs
