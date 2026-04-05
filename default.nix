@@ -43,7 +43,7 @@ in
   buildFHSEnv {
     inherit pname version;
 
-    runScript = "${jetbrains.jdk-no-jcef}/bin/java -Dawt.toolkit.name=WLToolkit -Dsund.java2d.vulkan=True --add-opens=java.desktop/javax.swing=ALL-UNNAMED --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/jdk.internal.org.objectweb.asm=ALL-UNNAMED --add-opens=java.base/jdk.internal.org.objectweb.asm.tree=ALL-UNNAMED --add-opens=java.base/jdk.internal.org.objectweb.asm.Opcodes=ALL-UNNAMED -javaagent:${loaderSrc}/loader.jar -noverify -jar ${burpSrc}";
+    runScript = "${jetbrains.jdk-no-jcef}/bin/java -Dawt.toolkit.name=WLToolkit -Dsund.java2d.vulkan=True -Dos.name=linux -Duser.name=user --add-opens=java.desktop/javax.swing=ALL-UNNAMED --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/jdk.internal.org.objectweb.asm=ALL-UNNAMED --add-opens=java.base/jdk.internal.org.objectweb.asm.tree=ALL-UNNAMED --add-opens=java.base/jdk.internal.org.objectweb.asm.Opcodes=ALL-UNNAMED -javaagent:${loaderSrc}/loader.jar -noverify -jar ${burpSrc}";
 
     targetPkgs = pkgs:
       with pkgs; [
