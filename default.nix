@@ -22,9 +22,20 @@
     hash = burpHash;
   };
 
-  loaderSrc = ./.;
+  loaderSrc = ./loader.jar;
 
   pname = "burpsuitepro";
+
+  javaOpts = [
+    "-Dawt.toolkit.name=WLToolkit"
+    "-Dsund.java2d.vulkan=True"
+    "-Duser.name=user"
+    "--add-opens=java.desktop/javax.swing=ALL-UNNAMED"
+    "--add-opens=java.base/java.lang=ALL-UNNAMED"
+    "--add-opens=java.base/jdk.internal.org.objectweb.asm=ALL-UNNAMED"
+    "--add-opens=java.base/jdk.internal.org.objectweb.asm.tree=ALL-UNNAMED"
+    "--add-opens=java.base/jdk.internal.org.objectweb.asm.Opcodes=ALL-UNNAMED"
+  ];
 
   description = "An integrated platform for performing security testing of web applications";
   desktopItem = makeDesktopItem {
@@ -43,7 +54,7 @@ in
   buildFHSEnv {
     inherit pname version;
 
-    runScript = "${jetbrains.jdk-no-jcef}/bin/java -Dawt.toolkit.name=WLToolkit -Dsund.java2d.vulkan=True -Duser.name=user --add-opens=java.desktop/javax.swing=ALL-UNNAMED --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/jdk.internal.org.objectweb.asm=ALL-UNNAMED --add-opens=java.base/jdk.internal.org.objectweb.asm.tree=ALL-UNNAMED --add-opens=java.base/jdk.internal.org.objectweb.asm.Opcodes=ALL-UNNAMED -javaagent:${loaderSrc}/loader.jar -noverify -jar ${burpSrc}";
+    runScript = "${jetbrains.jdk-no-jcef}/bin/java ${lib.concatStringsSep " " javaOpts} -javaagent:${loaderSrc} -noverify -jar ${burpSrc}";
 
     targetPkgs = pkgs:
       with pkgs; [
@@ -74,7 +85,7 @@ in
       ${lib.getBin unzip}/bin/unzip -p ${burpSrc} resources/Media/icon64${productName}.png > $out/share/pixmaps/burpsuitepro.png
 
       cp ${burpSrc} $out/share/burpsuite_pro_v${version}.jar
-      cp ${loaderSrc}/loader.jar $out/share/loader.jar
+      cp ${loaderSrc} $out/share/loader.jar
 
       # Create loader executable
       mkdir -p $out/bin
@@ -105,6 +116,6 @@ in
         bennofs
         fab
       ];
-      mainProgram = "burpsuite";
+      mainProgram = "burpsuitepro";
     };
   }
