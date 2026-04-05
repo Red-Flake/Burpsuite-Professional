@@ -55,7 +55,6 @@ in
         expat
         glib
         gtk3
-        gtk3-x11
         jython
         libcanberra-gtk3
         libdrm
@@ -66,13 +65,6 @@ in
         nspr
         nss
         pango
-        libx11
-        libxcb
-        libxcomposite
-        libxdamage
-        libxext
-        libxfixes
-        libxrandr
       ];
 
     extraInstallCommands = ''
