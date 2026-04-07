@@ -28,7 +28,7 @@
 
   javaOpts = [
     "-Dawt.toolkit.name=WLToolkit"
-    "-Dsund.java2d.vulkan=True"
+    "-Dsun.java2d.vulkan=True"
     "-Duser.name=user"
     "--add-opens=java.desktop/javax.swing=ALL-UNNAMED"
     "--add-opens=java.base/java.lang=ALL-UNNAMED"
