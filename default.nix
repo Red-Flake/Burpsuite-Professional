@@ -29,6 +29,7 @@
   javaOpts = [
     "-Dawt.toolkit.name=WLToolkit"
     "-Dsun.java2d.vulkan=True"
+    "-Dsun.java2d.accelsd=true"
     "-Duser.name=user"
     "--add-opens=java.desktop/javax.swing=ALL-UNNAMED"
     "--add-opens=java.base/java.lang=ALL-UNNAMED"
@@ -76,6 +77,9 @@ in
         nspr
         nss
         pango
+        # vulkan stuff
+        vulkan-loader
+        mesa
       ];
 
     extraInstallCommands = ''
