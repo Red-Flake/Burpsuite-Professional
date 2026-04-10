@@ -67,11 +67,19 @@ in
         expat
         glib
         gtk3
+        gtk3-x11
         jython
         libcanberra-gtk3
         libdrm
         udev
         libxkbcommon
+        libx11
+        libxcb
+        ibxcomposite
+        libxdamage
+        libxext
+        libxfixes
+        libxrandr
         libgbm
         libglvnd
         nspr
