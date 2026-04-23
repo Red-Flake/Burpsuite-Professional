@@ -73,13 +73,13 @@ in
         libdrm
         udev
         libxkbcommon
-        libx11
-        libxcb
-        ibxcomposite
-        libxdamage
-        libxext
-        libxfixes
-        libxrandr
+        xorg.libX11
+        xorg.libxcb
+        xorg.libXcomposite
+        xorg.libXdamage
+        xorg.libXext
+        xorg.libXfixes
+        xorg.libXrandr
         libgbm
         libglvnd
         nspr
